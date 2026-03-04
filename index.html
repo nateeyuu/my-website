@@ -5,6 +5,22 @@
 <title> Sound book : Earthquake </title>
 </head>
 
+    <button onclick="speakUK()">🔊 Read (UK)</button>
+
+<script>
+function speakUK() {
+  const text = "The earthquake caused severe damage in the city.";
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "en-GB";   // 🇬🇧 สำเนียงอังกฤษ (British)
+  utterance.rate = 1;         // ความเร็ว
+  utterance.pitch = 1;        // โทนเสียง
+
+  speechSynthesis.speak(utterance);
+}
+</script>
+    
+
 <h1> Sound book : Earthquake </h1>
     
 <body>
@@ -561,6 +577,7 @@ function speak(text)
 </body>
 
 </html>
+
 
 
 
