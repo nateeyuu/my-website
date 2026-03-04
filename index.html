@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test</title>
+</head>
+
+<body>
+
+<p>
+    <span title="แผ่นดินไหว"
+          onclick="speak('Earthquake')"
+          style="cursor:pointer; color:rgb(0,0,0);">
+        Earthquake
+    </span>
+
+    <span title="ความเร็ว"
+          onclick="speak('speed')"
+          style="cursor:pointer; color:rgb(15,209,25); transition:0.3s;"
+          onmouseover="this.style.transform='scale(1.2)'"
+          onmouseout="this.style.transform='scale(1)'">
+        speed
+    </span>
+</p>
+
+<script>
+let voices = [];
+
+speechSynthesis.onvoiceschanged = () => {
+    voices = speechSynthesis.getVoices();
+};
+
+function speak(text)
+{
+    speechSynthesis.cancel();
+
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "en-US";
+
+    const voice = voices.find(v => v.lang === "en-US");
+    if (voice) {
+        u.voice = voice;
+    }
+
+    u.rate = 1;
+    u.pitch = 1;
+
+    speechSynthesis.speak(u);
+}
+</script>
+
+</body>
+</html>
